@@ -1,0 +1,22 @@
+﻿
+@model PersonelMvc.Models.EntityFramework.Departman
+
+@{
+    ViewBag.Title = "Yeni";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Yeni</h2>
+
+@*departman controller da kaydet metodunu post gördüğünde çalıştır*@
+
+@using (Html.BeginForm("Kaydet", "Departman", FormMethod.Post))  // FormMethod.Post durumunda buttonla çalıştırıyoruz (departmanController da)
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Ad)
+        @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(m => m.Id)
+    <button type="submit" class="btn btn-success">Kaydet</button>
+}

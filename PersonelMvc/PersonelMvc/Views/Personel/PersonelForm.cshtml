@@ -1,0 +1,64 @@
+﻿@model PersonelMvc.ViewModels.PersonelFormViewModel
+@{
+    ViewBag.Title = "Yeni";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Yeni</h2>
+
+
+@using (Html.BeginForm("Kaydet", "Personel", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Personel.Ad)
+        @Html.TextBoxFor(m => m.Personel.Ad, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Personel.Soyad)
+        @Html.TextBoxFor(m => m.Personel.Soyad, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Personel.DepartmanId)
+        @Html.DropDownListFor(m => m.Personel.DepartmanId, new SelectList(Model.Departmanlar, "Id", "Ad"), "Deparman Seçiniz...", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Personel.Maas)
+        @Html.TextBoxFor(m => m.Personel.Maas, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Personel.DogumTarihi)
+
+        @Html.TextBoxFor(m => m.Personel.DogumTarihi, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+    </div>
+
+    <div class="radio">
+        <label>
+            @Html.RadioButtonFor(m => m.Personel.Cinsiyet, true) Erkek
+        </label>
+        <label>
+            @Html.RadioButtonFor(m => m.Personel.Cinsiyet, false) Kadın
+
+        </label>
+
+    </div>
+    @*<div class="radio">
+        <label>
+    @Html.CheckBoxFor(m => m.Personel.Evlimi) Evliyseniz Seçiniz...
+    @Html.RadioButtonFor(m=>m.Personel.Evlimi, true) Evli
+        </label>
+        <label>
+            @Html.RadioButtonFor(m => m.Personel.Evlimi, false) Bekar
+        </label>
+    </div>*@
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Personel.Evlimi) Evliyseniz Seçiniz...
+          
+        </label>
+    </div>
+    @Html.HiddenFor(m => m.Personel.Id)
+    <button type="submit" class="btn btn-default">Kaydet</button>}
+
+
